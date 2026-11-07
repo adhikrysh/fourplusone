@@ -1,0 +1,12 @@
+{
+  "name": "fourplusone",
+  "description": "fourplusone: stay aligned with what your coding agent builds.",
+  "owner": { "name": "adhikrish rk" },
+  "plugins": [
+    {
+      "name": "fourplusone",
+      "source": "./",
+      "description": "Keeps you aligned with what your coding agent builds: a live 4+1 view of your system plus every decision, turn by turn."
+    }
+  ]
+}
