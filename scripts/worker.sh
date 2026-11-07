@@ -28,3 +28,11 @@ while turn="$(ls "$state/queue/"*.txt 2>/dev/null | sort | head -1)" && [ -n "$t
     <"$turn" || echo "[$(date '+%F %T')] observer failed on $(basename "$turn")"
   rm -f "$turn"
 done
+
+# Release the lock, then look once more. A turn queued while we were finishing
+# would find the lock taken, exit, and wait for some later turn to start a worker.
+trap - EXIT
+rmdir "$state/lock"
+if ls "$state/queue/"*.txt >/dev/null 2>&1; then
+  exec "$0" "$repo" "$gitdir"
+fi
